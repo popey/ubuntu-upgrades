@@ -1,0 +1,269 @@
+<tw-storydata name="Ubuntu Upgrades" startnode="1" creator="Twine" creator-version="2.0.8" ifid="666190AB-ECD5-49FF-B277-4FFF6B29CD34" format="Harlowe" options=""><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">@import url(https://fonts.googleapis.com/css?family=Ubuntu);
+
+tw-story {
+	font-family: 'Ubuntu';
+}
+
+tw-icon
+{
+  color: #dd4814;
+	opacity:1.0;
+}
+
+
+
+
+
+
+</style><script role="script" id="twine-user-script" type="text/twine-javascript">function getLastModified() {
+	var modifiedDateTime = "Build: " + document.lastModified;
+	var divElement = document.createElement("div");
+//	divElement.style = "position: absolute; top: 0px; left: 0px;";
+	divElement.innerHTML = modifiedDateTime;
+	document.body.appendChild(divElement);
+}
+
+getLastModified();
+</script><tw-passagedata pid="1" name="Start" tags="" position="1055,675">&#x27;&#x27;Ubuntu Upgrade&#x27;&#x27; - //Choose Your Own Adventure//
+
+This is a simple work in progress test of Twine for creating a story to help users diagnose and fix problems with Ubuntu. 
+
+//This story is unfinished and unsupported and assumes the visitor is using Unity on Ubuntu.//
+
+The goal of this story is to debug &#x27;&#x27;upgrade&#x27;&#x27; issues. 
+
+Choose a debugging path:-
+* [[Upgrade was started but is hanging]]
+* [[Upgrade completed, but system is malfunctioning]]
+* [[System failed during upgrade or power lost]] 
+* [[Upgrade Crashed]] 
+* [[Upgrade finished successfully]]
+Alternative options:-
+* [[Wipe everything and re-install]]
+* [[Wipe system data but keep personal data]]
+* [[Restore from backup]]
+Background information:-
+* [[What is an Ubuntu Upgrade]]
+* [[Thinking about upgrading]]
+* [[About to start the upgrade]]
+
+There are also [[Useful Tools]] and [[Common Fixes]] available throughout the story.</tw-passagedata><tw-passagedata pid="2" name="About to start the upgrade" tags="" position="1261,275">These pages are for problems before the upgrade has begun. If the upgrade has already started or the upgrade is complete, go back to the [[Start]].
+
+At this point we assume the system is functioning correctly before beginning any kind of upgrade. It&#x27;s also worth pointing out that a good [[Backup]] is worth taking before upgrading begins.
+
+Firstly, identify [[What version of Ubuntu am I running?]] then return here.
+
+//Section for EOL releases//
+
+//Section to branch for each supported version//
+
+//Section for users of wubi//
+</tw-passagedata><tw-passagedata pid="3" name="Upgrade was started but is hanging" tags="" position="780,206.66666666666669">Sometimes the upgrade takes a long time and can appear that it&#x27;s frozen. It can also actually freeze. This page is to identify why the upgrade has frozen.
+
+//Section on identifying a hanging process//
+
+//Section on resolving hanging situations//</tw-passagedata><tw-passagedata pid="4" name="Upgrade completed, but system is malfunctioning" tags="" position="1058,211">This branch is for identifying issues post-upgrade. If you&#x27;ve not yet upgraded then go back to the [[Start]].
+
+Once you rebooted after the upgrade has finished, choose whichever best describes the issue:-
+
+* [[Black screen on boot]]
+* [[Unpopulated desktop after login]]</tw-passagedata><tw-passagedata pid="5" name="Useful Tools" tags="" position="1488,751">The following tools may be useful during this story:-
+
+* [[Open Terminal on Desktop]]
+* [[Boot into Recovery Mode]]
+* [[Switch to Console]]
+* [[Switch back to GUI]]
+* [[What version of Ubuntu am I running?]]
+* [[What version of Linux Kernel am I running?]]
+* [[Sharing logs via a pastebin]] </tw-passagedata><tw-passagedata pid="6" name="Common Fixes" tags="" position="1186.6666666666667,871.6666666666667">There&#x27;s some commands which can be run on an Ubuntu system which frequently resolve issues with upgrades. There&#x27;s no guarantee these will fix any particular issue, but experience has shown they resolve many problems.
+
+* [[Re-install Ubuntu Desktop Package]]
+* [[Configure Unconfigured Packages]]
+</tw-passagedata><tw-passagedata pid="7" name="Upgrade Crashed" tags="" position="208,631">If the upgrade process itself crashes, it usually leaves a log behind which can help identify why.
+</tw-passagedata><tw-passagedata pid="8" name="Switch to Console" tags="" position="1745,1055">The console is a text based interface to the computer. There&#x27;s no GUI on the console, but it&#x27;s very powerful. Use it to login and issue terminal commands. Once finished you may want to [[Switch back to GUI]]
+
+To switch to console press:-
+
+(font: &quot;Courier New&quot;)[CTRL+ALT+F1]
+
+Note that you can also use the other function keys F2 through F6</tw-passagedata><tw-passagedata pid="9" name="Switch back to GUI" tags="" position="1801.6666666666667,875">If you&#x27;ve used the step at [[Switch to Console]] to switch to the text based console, and you want to get back to the graphical environment then you&#x27;ll need this.
+
+To switch back to the graphical environment press:-
+
+(font: &quot;Courier New&quot;)[CTRL+ALT+F7]</tw-passagedata><tw-passagedata pid="10" name="Re-install Ubuntu Desktop Package" tags="" position="1350,830">The packaging system keeps track of dependencies between packages. There&#x27;s one master &#x27;meta package&#x27; which, if removed, can cause other packages to be missing. Typically re-installing this meta-package can fix issues by installing the missing packages.
+
+However there&#x27;s confusingly a &#x27;task&#x27; of the same name, which also can be re-installed and has a similar (if more potent) result.
+
+Reinstall the metapackage:-
+
+* [[Switch to Console]] if your graphical display is broken, or [[Open Terminal on Desktop]] if you have access to the graphical display
+* Run the following command:-
+
+sudo apt-get install ubuntu-desktop
+
+//At this point enter the user password//
+
+Typical output:-
+
+{{{alan@deep-thought ~&gt; sudo apt-get install ubuntu-desktop}}}
+{{{[sudo] password for alan:}}}
+{{{Reading package lists... Done}}}
+{{{Building dependency tree}}}
+{{{Reading state information... Done}}}
+{{{ubuntu-desktop is already the newest version.}}}
+{{{Use &#x27;apt-get autoremove&#x27; to remove them.}}}
+{{{0 to upgrade, 0 to newly install, 0 to remove and 0 not to upgrade.]
+
+* Run the following command:-
+
+//Note the circumflex &quot;^&quot; at the end of the line. This is important and indicates installation of a task//
+
+{{{sudo apt-get install ubuntu-desktop^}}}
+
+Typical output:-
+
+{{{alan@deep-thought ~&gt; sudo apt-get install ubuntu-desktop^}}}
+{{{Reading package lists... Done}}}
+{{{Building dependency tree}}}
+{{{Reading state information... Done}}}
+
+//Followed by many lines like this//
+
+{{{Note, selecting &#x27;dvd+rw-tools&#x27; for task &#x27;ubuntu-desktop&#x27;}}}
+{{{Note, selecting &#x27;unity-control-center-signon&#x27; for task &#x27;ubuntu-desktop&#x27;}}}
+{{{Note, selecting &#x27;growisofs&#x27; for task &#x27;ubuntu-desktop&#x27;}}}
+
+//Followed by many lines like this//
+
+{{{zeitgeist-datahub is already the newest version.}}}
+{{{zenity is already the newest version.}}}
+{{{zenity-common is already the newest version.}}}
+
+//Possibly some lines like this//
+
+{{{The following packages were automatically installed and are no longer required:}}}
+{{{  autopilot-desktop click-dev click-doc libbotan-1.10-0 libcontent-hub-doc}}}
+{{{  libportaudiocpp0 libqt5sensors5-dev libqt5x11extras5}}}
+{{{ Use &#x27;apt-get autoremove&#x27; to remove them.}}}
+
+&#x27;&#x27;This section is worth noting. It indicates something was missing and is now going to be installed. Many packages listed here indicates that the task was missing for a while, or perhaps an upgrade fell over part way through. Packages to be removed may also be indicative of a broken upgrade, or may simply be old packages that haven&#x27;t been cleared up for a while.&#x27;&#x27;
+
+{{{Suggested packages:}}}
+{{{  jackd2}}}
+{{{The following packages will be REMOVED}}}
+{{{  libjack-dev libjack0 oxideqt-codecs-extra portaudio19-dev ubuntu-sdk}}}
+{{{  ubuntu-sdk-libs ubuntu-sdk-libs-dev unity-scope-click}}}
+{{{The following NEW packages will be installed}}}
+{{{  libjack-jackd2-0 libqmi-glib1 libqmi-proxy modemmanager oxideqt-codecs}}}
+{{{  ttf-ancient-fonts-symbola}}}
+{{{0 to upgrade, 6 to newly install, 8 to remove and 0 not to upgrade.}}}
+{{{Need to get 2,400 kB of archives.}}}
+{{{After this operation, 226 kB of additional disk space will be used.}}}
+{{{Do you want to continue? [Y/n]}}}
+
+* Press Y then [Enter] to accept these changes.</tw-passagedata><tw-passagedata pid="11" name="Configure Unconfigured Packages" tags="" position="1185,1070">Sometimes when an upgrade crashes or is otherwise interrupted there can be unconfirgured or half-configured software packages which need to be configured.
+
+To finish configuring any packages that are in that state, use the following command:-
+
+(font: &quot;Courier New&quot;)[sudo dpkg --configure -a]
+
+Do this after [[Open Terminal on Desktop]] or [[Switch to Console]].</tw-passagedata><tw-passagedata pid="12" name="Open Terminal on Desktop" tags="" position="1411,971">The terminal is a powerful text based interface to the computer. Use it to issue commands, edit files and read logs. 
+
+To open the terminal press:-
+
+{{{CTRL+ALT+T}}}
+</tw-passagedata><tw-passagedata pid="13" name="What version of Ubuntu am I running?" tags="" position="1733,445">It&#x27;s often important to know exactly what version of Ubuntu is running. 
+
+To find out what version of Ubuntu is running, either on the console or in a terminal, type the following:-
+
+{{{lsb_release -a}}}
+
+The output will be similar to the following:-
+
+{{{No LSB modules are available.}}}
+{{{Distributor ID:	Ubuntu}}}
+{{{Description:	Ubuntu 14.10}}}
+{{{Release:	14.10}}}
+{{{Codename:	utopic}}}
+
+The {{{Release}}} line is typically most useful, although some people use the {{{Codename}}} when referring to releases. The release number is simply the Month and Year of release in MM.YY format.
+
+The [[Releases|https://wiki.ubuntu.com/Releases]] page on the Ubuntu Wiki lists which releases are currently supported, and which are EOL (End Of Life) or in active development.</tw-passagedata><tw-passagedata pid="14" name="What version of Linux Kernel am I running?" tags="" position="1735,598">It&#x27;s often important to know exactly what version and architecture of the Linux Kernel you&#x27;re running. 
+
+To find out what version of Linux Kernel you&#x27;re running, either on the console or in a terminal, type the following:-
+
+&lt;p&gt;uname -a&lt;/p&gt;
+
+You will see output similar to the following:-
+
+&lt;p&gt;Linux deep-thought &lt;b&gt;3.16.0-23-generic&lt;/b&gt; #30-Ubuntu SMP Thu Oct 16 13:17:16 UTC 2014 &lt;b&gt;x86_64&lt;/b&gt; x86_64 x86_64 GNU/Linux&lt;/p&gt;
+
+The Linux Kernel version number is highlighted above. In this example it&#x27;s 3.16.0-23-generic.
+
+The architecture is also highlighted which is x86_64. The following table details some of the common terms used for the architecture.
+
+* x86_64 - 64-bit, AMD64
+* i686 - 32-bit, i386 (incorrectly)
+
+
+</tw-passagedata><tw-passagedata pid="15" name="Black screen on boot" tags="" position="1175,48">//Section on identifying why screen is black//
+
+//Section on resolving the issue//</tw-passagedata><tw-passagedata pid="16" name="Unpopulated desktop after login" tags="" position="960,20">//Section on identifying why desktop is unpopulated//
+
+//Section on resolving the issues//</tw-passagedata><tw-passagedata pid="17" name="Backup" tags="" position="1535,138">//Section about recommended ways to backup//</tw-passagedata><tw-passagedata pid="18" name="System failed during upgrade or power lost" tags="" position="601,426">External factors (such as power loss) during an upgrade can leave the system in an inconsistent state.
+
+//Determine state//
+
+//Provide solutions to inconsistencies//</tw-passagedata><tw-passagedata pid="19" name="Upgrade finished successfully" tags="" position="620,288">Fantastic news!
+
+Now go and tell everyone how awesome Ubuntu Upgrades are.
+
+Thanks for playing.</tw-passagedata><tw-passagedata pid="20" name="Sharing logs via a pastebin" tags="" position="1451.6668666666667,541">Often it&#x27;s helpful to share log files, or other text output with experts online. Pastebins are websites which freely host those files temporarily for easy sharing with others.
+
+Essentially to share a file you can upload it via one of the following means, and give the expert the url which gets displayed.
+
+For each of these examples replace &lt;filename&gt; with the actual filename the expert is requesting. This may include the full path such as &#x27;/var/log/Xorg.0.log&#x27;, or it could be a file in your current directory such as &#x27;.xsession-errors&#x27;
+
+* Pastebin an entire file (omit the &lt; and &gt;)
+
+(font: &quot;Courier New&quot;)[cat &lt;filename&gt; | nc termbin.com 9999]
+
+* Pastebin only the last 10 lines of a file (omit the &lt; and &gt;)
+
+(font: &quot;Courier New&quot;)[tail -n 10 &lt;filename&gt; | nc termbin.com 9999]
+</tw-passagedata><tw-passagedata pid="21" name="Thinking about upgrading" tags="" position="1345,415">Most Ubuntu users stick to LTS (Long Term Support releases) which generally come out every 2 years in April. Interim (non-LTS) releases are supported with bug fixes and security updates for a shorter time. Some users need to upgrade to a new release to continue to receive support.
+
+Firstly, find out [[What version of Ubuntu am I running?]] then come back here.
+
+Find out more about what releases are currently supported at &lt;p&gt;&lt;a href=&quot;http://wiki.ubuntu.com/Releases&quot; target=&quot;_blank&quot;&gt;http://wiki.ubuntu.com/Releases&lt;/a&gt;&lt;/p&gt;
+
+Some recommended upgrade paths:-
+
+* 13.10 (Saucy Salamander) to 14.04 LTS (Trusty Tahr)
+* 14.04 LTS (Trusty Tahr) to 14.10 (Utopic Unicorn)
+* 14.10 (Utopic Unicorn) to 15.04 (Vivid Vervet)
+* 15.04 (Vivid Vervet) to 15.10 (Wily Werewolf)
+
+Examples of not recommended upgrade paths:-
+
+* 14.04 (Trusty Tahr) to 15.10 (Wily Warewolf) - 15.10 is not yet released, but in development
+* 14.04 (Trusty Tahr) to 15.04 (Vivid Vervet) - Skipping 14.10
+
+Back to the [[Start]]</tw-passagedata><tw-passagedata pid="22" name="Empty page" tags="" position="110,160"></tw-passagedata><tw-passagedata pid="23" name="What is an Ubuntu Upgrade" tags="" position="1266.6666666666667,610">A new version of Ubuntu is released every 6 months. Each has a code name and a version number based on the year and month of release. 
+
+A release is either an LTS (Long Term Support) or not. LTS releases are released every 2 years in April and are supported with bug fixes and security updates for 5 years. Non-LTS releases are supported with bug fixes and security updates for 9 months.
+
+Find out more about what releases are currently supported at &lt;p&gt;&lt;a href=&quot;http://wiki.ubuntu.com/Releases&quot; target=&quot;_blank&quot;&gt;http://wiki.ubuntu.com/Releases&lt;/a&gt;&lt;/p&gt;
+
+An Ubuntu Upgrade is when the system is updated from one release to another. Each software package on the system is updated from the version in the current release to (typically) a newer version in the next release. Not all software changes significantly between one 6-monthly release and the next, and some don&#x27;t change at all. However there&#x27;s usually a significant change in software versions from one LTS release to another - as there was a 2-year gap between their releases.</tw-passagedata><tw-passagedata pid="24" name="Boot into Recovery Mode" tags="" position="1743,735">Recovery mode is a special way of booting up Ubuntu providing expert tools, but not the standard desktop. This can be used to diagnose, debug and fix issues.
+
+Steps to enter recovery mode:-
+* Reboot computer
+* Hold down SHIFT to interrupt booting immediately after the Power On Self Test or any manufacturer splash screen / logos
+
+//Note: Sometimes the computer continues booting normally. In this case, reboot and try again, and hold down SHIFT earlier in the boot process.//
+
+* At the menu, use the down arrow key to highlight &#x27;Advanced Options&#x27;, press ENTER
+* Use the down arrow to select uppermost line with &#x27;(recovery)&#x27; appended, press ENTER
+
+More details about recovery mode can be found online at &lt;p&gt;&lt;a href=&quot;https://wiki.ubuntu.com/RecoveryMode&quot; target=&quot;_blank&quot;&gt;https://wiki.ubuntu.com/RecoveryMode&lt;/a&gt;&lt;/p&gt;.</tw-passagedata><tw-passagedata pid="25" name="Wipe everything and re-install" tags="" position="843,873">//Detailing the pros and cons of reinstalling, and links to guides to re-installation//</tw-passagedata><tw-passagedata pid="26" name="Wipe system data but keep personal data" tags="" position="690,813">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="27" name="Restore from backup" tags="" position="990,876">Double-click this passage to edit it.</tw-passagedata></tw-storydata>
